@@ -49,14 +49,13 @@ ul {
 /* Game Page */
 .game.page {
   display: none;
-  height: 100px;
+  /*height: 100px;*/
   margin-top: -100px;
   position: absolute;
-  /*display: block;*/
   margin: 0 auto;
   text-align: center;
-  top: 30%;
   width: 100%;
+  /*background-color: #000; */
 }
 
 #letters {
@@ -89,6 +88,10 @@ ul {
   padding-bottom: 15px;
   text-align: center;
   width: 400px;
+}
+
+.game.page .form {
+  margin-top: 10%;
 }
 
 .game.page .form .wordInput {
@@ -184,4 +187,8 @@ ul {
   position: absolute;
   right: 0;
   width: 100%;
+}
+
+.letter {
+  padding: 10px;
 }
