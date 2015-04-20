@@ -12,6 +12,7 @@ $(function() {
   var $usernameInput = $('.usernameInput'); // Input for username
   var $messages = $('.messages'); // Messages area
   var $inputMessage = $('.inputMessage'); // Input message input box
+  var $wordInput = $('.wordInput'); // Input message input box
   var $playButton = $('.play.button'); // Play button
 
   var $loginPage = $('.login.page'); // The login page
@@ -24,6 +25,7 @@ $(function() {
   var username;
   var connected = false;
   var typing = false;
+  var playing = false;
   var lastTypingTime;
   var $currentInput = $usernameInput.focus();
 
@@ -48,7 +50,7 @@ $(function() {
       $loginPage.fadeOut();
       $chatPage.show();
       // $gamePage.show();
-      $gamePage.fadeOut();
+      // $gamePage.fadeOut();
       $loginPage.off('click');
       $currentInput = $inputMessage.focus();
 
@@ -196,10 +198,12 @@ $(function() {
 
   // Open game page
   function startGame (username) {
+      playing = true;
       $chatPage.fadeOut();
       fillLetters();
-      $gamePage.show();
-      $characterArray.show();
+      $gamePage.fadeIn();
+      // $characterArray.show();
+      $currentInput = $wordInput.focus();
   }
 
   // Fill letter board
@@ -207,7 +211,7 @@ $(function() {
     var text = "";
     var possible = "canfanslipperscomputerwalletmoneycardmousenoodlesocks";
     for( var i=0; i < possible.length; i++ )
-        text += possible.charAt(Math.floor(Math.random() * possible.length)) + "   ";
+        text += "<span class='letter'>" + possible.charAt(Math.floor(Math.random() * possible.length)) + "</span>";
 
     $characterArray.html(text);
   }
@@ -224,6 +228,8 @@ $(function() {
         sendMessage();
         socket.emit('stop typing');
         typing = false;
+      } else if (playing) {
+        alert("entered");
       } else {
         setUsername();
       }
@@ -241,9 +247,19 @@ $(function() {
     $currentInput.focus();
   });
 
+  // Focus input when clicking anywhere on game page
+  $gamePage.click(function () {
+    $currentInput.focus();
+  });
+
   // Focus input when clicking on the message input's border
   $inputMessage.click(function () {
     $inputMessage.focus();
+  });
+
+  // Focus input when clicking on the message input's border
+  $wordInput.click(function () {
+    $wordInput.focus();
   });
 
   // Start game on button click
