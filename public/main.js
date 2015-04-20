@@ -197,13 +197,22 @@ $(function() {
   // Open game page
   function startGame (username) {
       $chatPage.fadeOut();
-      $characterArray.html('test');
+      fillLetters();
       $gamePage.show();
       $characterArray.show();
   }
 
-  // Keyboard events
+  // Fill letter board
+  function fillLetters () {
+    var text = "";
+    var possible = "canfanslipperscomputerwalletmoneycardmousenoodlesocks";
+    for( var i=0; i < possible.length; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length)) + "   ";
 
+    $characterArray.html(text);
+  }
+
+  // Keyboard events
   $window.keydown(function (event) {
     // Auto-focus the current input when a key is typed
     if (!(event.ctrlKey || event.metaKey || event.altKey)) {
