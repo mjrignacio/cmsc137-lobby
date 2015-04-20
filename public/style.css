@@ -48,17 +48,21 @@ ul {
 
 /* Game Page */
 .game.page {
+  display: none;
   height: 100px;
   margin-top: -100px;
   position: absolute;
-
+  /*display: block;*/
+  margin: 0 auto;
   text-align: center;
-  top: 50%;
+  top: 30%;
   width: 100%;
 }
 
 #letters {
-  display: none;
+  /*display: none;*/
+  font-size: 36px;
+  padding: 0 30%;
 }
 
 /* Login Page */
@@ -87,6 +91,16 @@ ul {
   width: 400px;
 }
 
+.game.page .form .wordInput {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #fff;
+  outline: none;
+  padding-bottom: 15px;
+  text-align: center;
+  width: 800px;
+}
+
 .login.page .title {
   font-size: 200%;
 }
@@ -94,6 +108,14 @@ ul {
 .login.page .usernameInput {
   font-size: 200%;
   letter-spacing: 3px;
+}
+
+.game.page .wordInput {
+  font-size: 200%;
+  letter-spacing: 3px;
+  color: #000;
+  font-weight: 800;
+  margin-top: 5%;
 }
 
 .login.page .title, .login.page .usernameInput {
