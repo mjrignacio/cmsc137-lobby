@@ -12,9 +12,13 @@ $(function() {
   var $usernameInput = $('.usernameInput'); // Input for username
   var $messages = $('.messages'); // Messages area
   var $inputMessage = $('.inputMessage'); // Input message input box
+  var $playButton = $('.play.button'); // Play button
 
   var $loginPage = $('.login.page'); // The login page
   var $chatPage = $('.chat.page'); // The chatroom page
+  var $gamePage = $('.game.page'); // The game page
+
+  var $characterArray = $('#letters'); // The letters div
 
   // Prompt for setting a username
   var username;
@@ -43,6 +47,8 @@ $(function() {
     if (username) {
       $loginPage.fadeOut();
       $chatPage.show();
+      // $gamePage.show();
+      $gamePage.fadeOut();
       $loginPage.off('click');
       $currentInput = $inputMessage.focus();
 
@@ -188,6 +194,14 @@ $(function() {
     return COLORS[index];
   }
 
+  // Open game page
+  function startGame (username) {
+      $chatPage.fadeOut();
+      $characterArray.html('test');
+      $gamePage.show();
+      $characterArray.show();
+  }
+
   // Keyboard events
 
   $window.keydown(function (event) {
@@ -221,6 +235,11 @@ $(function() {
   // Focus input when clicking on the message input's border
   $inputMessage.click(function () {
     $inputMessage.focus();
+  });
+
+  // Start game on button click
+  $playButton.click(function () {
+    startGame();
   });
 
   // Socket events

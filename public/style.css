@@ -46,6 +46,21 @@ ul {
   width: 100%;
 }
 
+/* Game Page */
+.game.page {
+  height: 100px;
+  margin-top: -100px;
+  position: absolute;
+
+  text-align: center;
+  top: 50%;
+  width: 100%;
+}
+
+#letters {
+  display: none;
+}
+
 /* Login Page */
 
 .login.page {
