@@ -13,6 +13,16 @@ git clone https://github.com/mjrignacio/cmsc137.git
 
 If you know Git and have a Github account, fork this repo in order to contribute to it!
 
+## Make sure NPM (Node Project Manager) is installed!
+
+# For Linux machines
+
+$ sudo apt-get install npm
+
+# For Windows
+
+Google it!
+
 ## How to install
 
 ```
