@@ -15,11 +15,11 @@ If you know Git and have a Github account, fork this repo in order to contribute
 
 ## Make sure NPM (Node Project Manager) is installed!
 
-# For Linux machines
+### For Linux machines
 
 $ sudo apt-get install npm
 
-# For Windows
+### For Windows
 
 Google it!
 
