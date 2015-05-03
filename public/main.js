@@ -1,4 +1,5 @@
 $(function() {
+  var TIMER = 15;
   var FADE_TIME = 150; // ms
   var TYPING_TIMER_LENGTH = 400; // ms
   var COLORS = [
@@ -20,6 +21,7 @@ $(function() {
   var $gamePage = $('.game.page'); // The game page
 
   var $characterArray = $('#letters'); // The letters div
+  var $timer = $('#timer'); // The timer div
 
   // Prompt for setting a username
   var username;
@@ -198,12 +200,13 @@ $(function() {
 
   // Open game page
   function startGame (username) {
-      playing = true;
-      $chatPage.fadeOut();
-      fillLetters();
-      $gamePage.fadeIn();
-      // $characterArray.show();
-      $currentInput = $wordInput.focus();
+    playing = true;
+    $chatPage.fadeOut();
+    fillLetters();
+    $gamePage.fadeIn();
+    $currentInput = $wordInput.focus();
+    var gameTimer = setInterval( function() { startTimer() }, 1000 );
+    var stopTimer = setTimeout( function() { clearInterval(gameTimer) }, 17000);
   }
 
   // Fill letter board
@@ -216,6 +219,18 @@ $(function() {
     $characterArray.html(text);
   }
 
+  function startTimer() {
+    if (TIMER < 10) {
+      document.getElementById("timer").innerHTML = "00:0" + TIMER--;
+    } else {
+      document.getElementById("timer").innerHTML = "00:" + TIMER--;
+    }
+    if (document.getElementById("timer").innerHTML == "00:00") {
+      document.getElementById("timer").innerHTML = "TIME'S UP!";
+      $wordInput.fadeOut();
+    }
+  }
+
   // Keyboard events
   $window.keydown(function (event) {
     // Auto-focus the current input when a key is typed
@@ -224,12 +239,12 @@ $(function() {
     }
     // When the client hits ENTER on their keyboard
     if (event.which === 13) {
-      if (username) {
+      if (playing) {
+        alert("entered");
+      } else if (username) {
         sendMessage();
         socket.emit('stop typing');
         typing = false;
-      } else if (playing) {
-        alert("entered");
       } else {
         setUsername();
       }
