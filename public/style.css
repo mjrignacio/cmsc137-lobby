@@ -64,6 +64,12 @@ ul {
   padding: 0 30%;
 }
 
+#timer {
+  padding: 30px;
+  font-size: 2em;
+  font-style: italic;
+}
+
 /* Login Page */
 
 .login.page {
@@ -76,7 +82,7 @@ ul {
   position: absolute;
 
   text-align: center;
-  top: 50%;
+  top: 40%;
   width: 100%;
 }
 
@@ -124,6 +130,14 @@ ul {
 .login.page .title, .login.page .usernameInput {
   color: #fff;
   font-weight: 100;
+}
+
+.subtitle {
+  font-size: 100%!important;
+}
+
+.game-title {
+  font-weight: 700!important;
 }
 
 /* Chat page */
