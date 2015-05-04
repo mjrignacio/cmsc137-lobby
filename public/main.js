@@ -212,11 +212,24 @@ $(function() {
   // Fill letter board
   function fillLetters () {
     var text = "";
-    var possible = "canfanslipperscomputerwalletmoneycardmousenoodlesocks";
-    for( var i=0; i < possible.length; i++ )
-        text += "<span class='letter'>" + possible.charAt(Math.floor(Math.random() * possible.length)) + "</span>";
+    var possible = "lockjaw";
+    possible = shuffle(possible);
+    for( var i=0; i < possible.length; i++ ) {
+        text += "<span class='letter'>" + possible.charAt(i) + "</span>";
+    }
 
     $characterArray.html(text);
+  }
+
+  function shuffle(string) {
+      var parts = string.split('');
+      for (var i = parts.length; i > 0;) {
+          var random = parseInt(Math.random() * i);
+          var temp = parts[--i];
+          parts[i] = parts[random];
+          parts[random] = temp;
+      }
+      return parts.join('');
   }
 
   function startTimer() {
