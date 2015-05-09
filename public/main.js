@@ -1,5 +1,17 @@
+/*
+
+TO-DO:
+- pre-set words
+- pre-set answers
+- reject duplicate answers
+- re-structure timing mechanics, game should start when server says so
+
+*/
+
 $(function() {
-  var possible = "lockjaw";
+  var possible = ["lockjaw", "racecar", "tugboat"];
+  var word;
+  var POINTS_SO_FAR = 0;
   var TIMER = 15;
   var FADE_TIME = 150; // ms
   var TYPING_TIMER_LENGTH = 400; // ms
@@ -204,17 +216,22 @@ $(function() {
   function startGame (username) {
     playing = true;
     $chatPage.fadeOut();
-    fillLetters();
+    word = possible[0];
+    fillLetters(word);
     $gamePage.fadeIn();
     $currentInput = $wordInput.focus();
     var gameTimer = setInterval( function() { startTimer() }, 1000 );
     var stopTimer = setTimeout( function() { clearInterval(gameTimer) }, 17000);
   }
 
+  function displayPoints() {
+
+  }
+
   // Fill letter board
-  function fillLetters () {
+  function fillLetters (word) {
     var text = "";
-    var shuffled = shuffle(possible);
+    var shuffled = shuffle(word);
     for( var i=0; i < shuffled.length; i++ ) {
         text += "<span class='letter'>" + shuffled.charAt(i) + "</span>";
     }
@@ -255,12 +272,15 @@ $(function() {
     if (event.which === 13) {
       if (playing) {
         var answer = document.getElementById("wordInput").value;
-        if (possible.includes(answer)) {
-          $answers.append("<p class='correctAnswer'>" + document.getElementById("wordInput").value + "</p>");
+        var points = answer.length;
+        if (word.includes(answer)) {
+          $answers.append("<p class='correctAnswer'>" + document.getElementById("wordInput").value + " <span class='points'>" + points + " points</span>" + "</p>");
+          POINTS_SO_FAR += points;
         } else {
           $answers.append("<p class='wrongAnswer'>" + document.getElementById("wordInput").value + "</p>");
         }
         document.getElementById("wordInput").value = '';
+        document.getElementById('points').innerHTML = "<h5>" + POINTS_SO_FAR + " points so far</h5>";
       } else if (username) {
         sendMessage();
         socket.emit('stop typing');
