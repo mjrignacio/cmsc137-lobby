@@ -75,11 +75,15 @@ div#answers {
 }
 
 .correctAnswer {
-  color: #8BA870;
+  color: #009900;
 }
 
 .wrongAnswer {
   color: #ff0000;
+}
+
+.points {
+  color: #C8C8C8;
 }
 
 /* Login Page */
