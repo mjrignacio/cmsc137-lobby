@@ -64,10 +64,22 @@ ul {
   padding: 0 30%;
 }
 
+div#answers {
+  margin-top: 40px;
+}
+
 #timer {
   padding: 30px;
   font-size: 2em;
   font-style: italic;
+}
+
+.correctAnswer {
+  color: #8BA870;
+}
+
+.wrongAnswer {
+  color: #ff0000;
 }
 
 /* Login Page */
