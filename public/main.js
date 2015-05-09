@@ -1,4 +1,5 @@
 $(function() {
+  var possible = "lockjaw";
   var TIMER = 15;
   var FADE_TIME = 150; // ms
   var TYPING_TIMER_LENGTH = 400; // ms
@@ -213,10 +214,9 @@ $(function() {
   // Fill letter board
   function fillLetters () {
     var text = "";
-    var possible = "lockjaw";
-    possible = shuffle(possible);
-    for( var i=0; i < possible.length; i++ ) {
-        text += "<span class='letter'>" + possible.charAt(i) + "</span>";
+    var shuffled = shuffle(possible);
+    for( var i=0; i < shuffled.length; i++ ) {
+        text += "<span class='letter'>" + shuffled.charAt(i) + "</span>";
     }
 
     $characterArray.html(text);
@@ -254,7 +254,12 @@ $(function() {
     // When the client hits ENTER on their keyboard
     if (event.which === 13) {
       if (playing) {
-        $answers.append("<p>" + document.getElementById("wordInput").value + "</p>");
+        var answer = document.getElementById("wordInput").value;
+        if (possible.includes(answer)) {
+          $answers.append("<p class='correctAnswer'>" + document.getElementById("wordInput").value + "</p>");
+        } else {
+          $answers.append("<p class='wrongAnswer'>" + document.getElementById("wordInput").value + "</p>");
+        }
         document.getElementById("wordInput").value = '';
       } else if (username) {
         sendMessage();
