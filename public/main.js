@@ -22,6 +22,7 @@ $(function() {
 
   var $characterArray = $('#letters'); // The letters div
   var $timer = $('#timer'); // The timer div
+  var $answers = $('#answers');
 
   // Prompt for setting a username
   var username;
@@ -253,7 +254,8 @@ $(function() {
     // When the client hits ENTER on their keyboard
     if (event.which === 13) {
       if (playing) {
-        alert("entered");
+        $answers.append("<p>" + document.getElementById("wordInput").value + "</p>");
+        document.getElementById("wordInput").value = '';
       } else if (username) {
         sendMessage();
         socket.emit('stop typing');
